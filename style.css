@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap");
+
+html {
+  background: url(./image\ 20ImgSimulador.png);
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+p {
+  font-size: 52px;
+  font-weight: 300;
+  margin-top: 2vh;
+}
+
+.divPai {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divPaiForms {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 15vh;
+}
+
+.divForm {
+  align-items: center;
+  background: #fff7f7;
+  box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 3vh 2vw 3vh 2vw;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select {
+  border: none;
+  background: #d9d9d9;
+  border-radius: 12px;
+  height: 30px;
+  width: 403px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 1.5vh;
+}
+
+.btnCalcular {
+  background-color: rgb(102, 209, 102);
+  width: 14vw;
+  height: 6vh;
+  border: none;
+  border-radius: 5px;
+  margin-right: 2.5px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btnCalcular:hover {
+  background-color: rgb(61, 128, 61);
+  transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.btnLimpar {
+  background-color: rgb(160, 67, 67);
+  width: 14vw;
+  height: 6vh;
+  border: none;
+  border-radius: 5px;
+  margin-left: 2.5px;
+  cursor: pointer;
+}
+
+.btnLimpar:hover {
+  background-color: rgb(130, 42, 42);
+  transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.btnVoltar {
+  background-color: white;
+  width: 3.5%;
+  border-radius: 50px;
+  display: none;
+  justify-content: center;
+  cursor: pointer;
+}
+.btnVoltar:hover{
+  background-color: rgb(160, 157, 157);
+  transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
+ }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <div class="btnVoltar" id="div_voltar" onclick="Voltar()">
+        <img src="./icons8-voltar-48.png">
+    </div>
+    <div class="divPai">
+      <p>Simulador Financeiro</p>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+      <div class="divForm" style="display: none; " id="div_msg">a</div>
+    </div>
+
+    <div class="divPaiForms" id="div_paiForm">
+      <div class="divForm">
+        <div style="display: flex; justify-content: center; margin-bottom: 4vh">
+          <h2>Simulador de Lucro</h2>
+        </div>
+
+        <label>Salário Médio de um enfermeiro:</label><br />
+        <input id="ipt_salarioMedioEnfermeiro" /><br />
+        <label>Quantidade de enfermeiros por sala:</label><br />
+        <input id="ipt_qntdEnfermeirosSala" /><br />
+        <label>Salário médio de um técnico em enfermagem:</label><br />
+        <input id="ipt_salarioMedioTecEnfermagem" /><br />
+        <label>Quantidade de Técnicos de enfermagem por sala::</label><br />
+        <input id="ipt_qntdTecEnfermagemSala" /><br />
+        <label>Quantidade de salas no Hospital:</label><br />
+        <input id="ipt_qntdSalasHospital" /><br />
+        <label>Quantidade de turnos por sala:</label><br />
+        <input id="ipt_qntdTurnos" />
+        <div style="margin-top: 2vh">
+          <button class="btnCalcular" onclick="calcGanhos()">Calcular</button>
+          <button class="btnLimpar">Limpar</button>
+        </div>
+      </div>
+      <div class="divForm">
+        <div style="display: flex; justify-content: center; margin-bottom: 4vh">
+          <h2>Simulador de Investimento</h2>
+        </div>
+
+        <label>Quantidade de Leitos por Sala:</label><br />
+        <input id="ipt+quantidadeLeitosSalas" /><br />
+        <label>Quantidade de salas:</label><br />
+        <input id="ipt_qntdSalasImplementar" /><br />
+        <label>Tipo do Plano:</label><br />
+        <select id="slct_tipoPlano">
+          <option value="0">Básico</option>
+          <option value="1">Premium</option>
+        </select>
+        <div style="margin-top: 2vh">
+          <button class="btnCalcular" onclick="calcInvestimento()">
+            Calcular
+          </button>
+          <button class="btnLimpar">Limpar</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  function calcGanhos() {
+    var salarioMedioEnfermeiro,
+      qntdEnfermeirosSala,
+      salarioMedioTecEnfermagem,
+      qntdTecEnfermagemSala,
+      qntdSalasHospital,
+      qntdTurnos,
+      qntdLeitosSala,
+      qntdSalasImplementar,
+      tipoPlano,
+      gastoMensal,
+      qntdEnfermeirosProjeto,
+      qntdTecEnfermagemProjeto,
+      gastoMensalProjeto,
+      porcentagemReducaoGasto;
+
+    salarioMedioEnfermeiro = Number(ipt_salarioMedioEnfermeiro.value);
+    qntdEnfermeirosSala = Number(ipt_qntdEnfermeirosSala.value);
+    salarioMedioTecEnfermagem = Number(ipt_salarioMedioTecEnfermagem.value);
+    qntdTecEnfermagemSala = Number(ipt_qntdTecEnfermagemSala.value);
+    qntdSalasHospital = Number(ipt_qntdSalasHospital.value);
+    qntdTurnos = Number(ipt_qntdTurnos.value);
+    qntdEnfermeirosProjeto = 2;
+    qntdTecEnfermagemProjeto = 1;
+
+    gastoMensal = (((qntdEnfermeirosSala * salarioMedioEnfermeiro) + (qntdTecEnfermagemSala * salarioMedioTecEnfermagem) * qntdSalasHospital) * qntdTurnos);
+    gastoMensalProjeto = (qntdEnfermeirosProjeto * salarioMedioEnfermeiro) + (qntdTecEnfermagemProjeto * salarioMedioTecEnfermagem); 
+
+    porcentagemReducaoGasto = (((gastoMensal - gastoMensalProjeto) / gastoMensal) *100);
+
+    div_paiForm.style.display = "none";
+    div_msg.style.display = "block";
+    div_voltar.style.display = "flex";
+
+    div_msg.innerHTML = `De acordo os dados inseridos sua instalação possui:<br>
+    <b>${qntdEnfermeirosSala}</b> Enfermeiros, cada um com um salário médio de: <b>${salarioMedioEnfermeiro}</b>,<br>
+    <b>${qntdTecEnfermagemSala}</b> Técnicos de enfermagem, cada um com um salário médio de: <b>${salarioMedioTecEnfermagem}</b>,<br>
+    <b>${qntdSalasHospital}</b> Salas de medicação, e, <b>${qntdTurnos}</b> Turnos.<br><br>
+    
+    Tendo um gasto de R$<b>${gastoMensal}</b> mensalmente e R$<b>${gastoMensal * 13}</b> anualmente<br><br>
+    
+    Implementando a nossa solução você terá um gasto de R$<b>${gastoMensalProjeto}</b> mensalmente e R$<b>${gastoMensalProjeto * 13}</b> anualmente.<br><br>
+    
+    Sendo assim, evitará de gastar R$<b>${gastoMensal - gastoMensalProjeto}</b> mensalmente e R$<b>${(gastoMensal - gastoMensalProjeto)*13}</b> anualmente. Um total de <b>${porcentagemReducaoGasto}</b>% de redução de gastos mensais.`;
+  }
+
+  function Voltar(){
+    div_paiForm.style.display = "flex";
+    div_msg.style.display = "none";
+    div_voltar.style.display = "none";
+  }
+</script>
