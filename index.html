@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Calculadora Financeira</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -49,7 +49,7 @@
         </div>
 
         <label>Quantidade de Leitos por Sala:</label><br />
-        <input id="ipt+quantidadeLeitosSalas" /><br />
+        <input id="ipt_quantidadeLeitosSalas" /><br />
         <label>Quantidade de salas:</label><br />
         <input id="ipt_qntdSalasImplementar" /><br />
         <label>Tipo do Plano:</label><br />
@@ -76,9 +76,6 @@
       qntdTecEnfermagemSala,
       qntdSalasHospital,
       qntdTurnos,
-      qntdLeitosSala,
-      qntdSalasImplementar,
-      tipoPlano,
       gastoMensal,
       qntdEnfermeirosProjeto,
       qntdTecEnfermagemProjeto,
@@ -120,4 +117,50 @@
     div_msg.style.display = "none";
     div_voltar.style.display = "none";
   }
+
+  function calcInvestimento(){
+    var qntdLeitosSala,
+      qntdSalasImplementar,
+      tipoPlano,
+      precoLM35,
+      precoTRC5000,
+      precoArduino,
+      precoProtoBoard,
+      valorInvestimento,
+      valorLeito,
+      qntdArduino;
+
+      qntdLeitosSala = Number(ipt_quantidadeLeitosSalas.value);
+      qntdSalasImplementar = Number(ipt_qntdSalasImplementar.value);
+      tipoPlano = slct_tipoPlano.value;
+
+      precoLM35 = 15;
+      precoTRC5000 = 1.30;
+      precoArduino = 70;
+      precoProtoBoard = 4.7;
+
+      qntdArduino = qntdLeitosSala / 3;
+
+
+     valorLeito = precoProtoBoard + precoLM35 + precoTRC5000;
+     valorInvestimento = ((valorLeito * qntdLeitosSala) + (precoArduino * qntdArduino) * qntdSalasImplementar);
+    
+     
+     if(tipoPlano == 1){
+      valorInvestimento = (valorInvestimento * 0.20) + valorInvestimento; 
+     }
+
+     div_paiForm.style.display = "none";
+    div_msg.style.display = "block";
+    div_voltar.style.display = "flex";
+
+     div_msg.innerHTML = `De acordo os dados inseridos você irá instalar nosso projeto em: <b>${qntdSalasImplementar}</b> salas,cada um contendo <b>${qntdLeitosSala}</b> leitos. <br><br>
+     
+     Com essas informações você irá gastar: R$<b>${valorLeito}</b> por leito e R$<b>${valorInvestimento / qntdSalasImplementar}</b> por sala<br>
+     e R$<b>${valorInvestimento}</b> no total.`;
+  }
+
+     console.log(valorInvestimento);
+
+  
 </script>
